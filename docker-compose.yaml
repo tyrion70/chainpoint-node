@@ -33,7 +33,7 @@ services:
 
   chainpoint-node:
     container_name: chainpoint-node
-    image: quay.io/chainpoint/chainpoint-node:826cf906c1391fecb6094518f097279f52a28c51
+    image: quay.io/chainpoint/chainpoint-node:fcde26357f15df4e835e5b02050f9eb07657cb7a
     volumes:
       - ~/.chainpoint:/home/node/app/.chainpoint
     build: .
