@@ -31,7 +31,7 @@ services:
 
   chainpoint-node:
     restart: always
-    image: quay.io/chainpoint/chainpoint-node:be15f6ed3ad707ad357b59b7435e27b93f920bf3
+    image: quay.io/chainpoint/chainpoint-node:bf2936a136bda2642a5836fd5564589d3cde4344
     volumes:
       - ~/.chainpoint:/home/node/app/.chainpoint
     ports:
