@@ -56,6 +56,6 @@ ps:
 
 ## Shutdown Node and **destroy** all local Node data
 clean: down
-	@rm -rf ./.data/*
+	@sudo rm -rf ./.data/*
 
 .PHONY: all build-config pull up down logs ps clean
