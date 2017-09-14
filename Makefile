@@ -1,5 +1,5 @@
 # First target in the Makefile is the default.
-all: up
+all: help
 
 # Get the location of this makefile.
 ROOT_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
@@ -56,6 +56,6 @@ ps:
 
 ## Shutdown Node and **destroy** all local Node data
 clean: down
-	@sudo rm -rf ./.data/*
+	@sudo rm -rf .data/*
 
 .PHONY: all build-config pull up down logs ps clean
