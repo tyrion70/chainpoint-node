@@ -5,10 +5,10 @@ set -e
 #
 #
 # You can run this startup script manually, by copying it to the host,
-# or by issuing this curl command. You should examine the script before
-# running.
+# or by issuing this curl command. Since this command pipes the script
+# directly into a bash shell you should examine the script before running.
 #
-#   curl -sSL https://raw.githubusercontent.com/chainpoint/chainpoint-node/master/scripts/docker-install-ubuntu.sh | bash
+#   curl -sSL https://cdn.rawgit.com/chainpoint/chainpoint-node/13b0c1b5028c14776bf4459518755b2625ddba34/scripts/docker-install-ubuntu.sh | bash
 #
 # Digital Ocean provides good documentation on how to manually install
 # Docker on their platform.
