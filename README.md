@@ -52,7 +52,7 @@ software.
 
 ### Software Components
 
-When started, `docker-compose` will run three system components in the Docker virtual machine.
+When started, `docker-compose` will install and run three system components in the Docker virtual machine.
 
 * PostgreSQL Database
 * Redis
