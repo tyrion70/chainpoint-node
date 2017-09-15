@@ -124,7 +124,7 @@ Before you start, you will need:
 
 * You must have the mimimum balance of TNT to run a Node, and those TNT must be assigned to the Ethereum address you'll
 use to identify your Node. You can check your TNT balance
-(in Grains, divide by `100000000` for TNT balance) using the Etherscan.io
+(in Grains, divide by `100000000` (10^8) for TNT balance) using the Etherscan.io
 [contract reading tool for our ERC20 smart contract](https://etherscan.io/address/0x08f5a9235b08173b7569f83645d2c7fb55e8ccd8#readContract) (input your address in the `balanceOf` field and click `Query`).
 
 * Sending hashes from a Node to Core requires that you convert TNT to system credits and spend credits for each
@@ -192,7 +192,7 @@ CHAINPOINT_NODE_PUBLIC_URI=
 
 `CHAINPOINT_NODE_PUBLIC_URI` : should be a URI where your Node can be publicly discovered and utilized by others. This might look like `http://10.1.1.20`. Your Node will run on port `80` over `http`. You can also provide a DNS domain name instead of an IPv4 address if you prefer. If provided, this address will be periodically audited by Tierion Core to ensure compliance with the rules for a healthy Node. If you leave this config value blank, it will be assumed that your Node is not publicly available, and you will not be eligible to earn TNT rewards.
 
-Once your Node starts with these configured values, a secret key will be provided for your system and stored in your local database. The Node will use this key to help authenticate itself to Tierion Core for submitting hashes and retrieving proofs in the future. If this secret key is lost, you will likely need to switch to another Ethereum address, and any credits on Tierion Core will be inaccesible. When you first start your Node, and this secret key is displayed in the logs, you might want to store it somewhere in case of accidental deletion.
+Once your Node starts with these configured values, a secret key will be provided for your system and stored in your local database. The Node will use this key to help authenticate itself to Tierion Core for submitting hashes and retrieving proofs in the future. If this secret key is lost, you will likely need to switch to another Ethereum address, and any credits on Tierion Core will be inaccesible. When you first start your Node, and this secret key is displayed in the logs, you will want to store it somewhere in case of accidental deletion.
 
 Loss of this secret would not expose you to loss of Ether or TNT. But without it you may lose any credits you have associated with your Ethereum address.
 
