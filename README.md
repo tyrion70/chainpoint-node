@@ -5,14 +5,12 @@
 
 ## About
 
-Chainpoint Nodes are a critical component of the Tierion Network. Nodes
-allows anyone to run a server that accepts hashes, anchor them to public
-blockchains, verify proofs, and participate in the Tierion Network
-Token (TNT) ecosystem.
+Chainpoint Nodes allows anyone to run a server that accepts hashes, anchors them to public
+blockchains, create and verify proofs, and participate in the Tierion Network.
 
 Nodes communicate with the Tierion Core, spending TNT to anchor hashes, and gain eligibility to earn TNT by providing services to the Tierion Network.
 
-In order to be eligible for earning TNT a Node must:
+To be eligible to earn TNT a Node must:
 
 * register a unique Ethereum address
 * maintain a minimum TNT balance for that address
@@ -22,12 +20,12 @@ In order to be eligible for earning TNT a Node must:
 
 Chainpoint Nodes that don't meet these requirements won't be eligible to earn TNT through periodic rewards.
 
-Chainpoint Nodes aggregate incoming hashes into a Merkle tree every second. The Merkle root generated will be submitted to a Tierion Core for anchoring
+Chainpoint Nodes aggregate incoming hashes into a Merkle tree every second. The Merkle root is submitted to a Tierion Core for anchoring
 to public blockchains.
 
-Nodes also maintain a validated mirror of the Calendar. This Calendar data allows any Node to verify any proof.
+Nodes maintain a mirror of the Calendar. This allows any Node to verify any proof.
 
-Nodes also exposes a public HTTP API, documented with Swagger, that you can explore:
+Nodes expose a public HTTP API, documented with Swagger, that you can explore:
 [https://app.swaggerhub.com/apis/chainpoint/node/1.0.0](https://app.swaggerhub.com/apis/chainpoint/node/1.0.0)
 
 ### Important Notice
@@ -40,7 +38,7 @@ for this application see [github.com/chainpoint/chainpoint-node-src](https://git
 
 ### How Does It Work?
 
-The Chainpoint Node software is run as a `docker-compose` application. `docker-compose` is a tool for running multiple Docker containers as
+Chainpoint Node is run as a `docker-compose` application. `docker-compose` is a tool for running multiple Docker containers as
 an orchestrated application suite.
 
 `docker-compose` allows distribution of binary images that can run
@@ -52,7 +50,7 @@ software.
 
 ### Software Components
 
-When started, `docker-compose` will run three system components in the Docker virtual machine.
+When started, `docker-compose` will install and run three system components in the Docker virtual machine.
 
 * PostgreSQL Database
 * Redis
@@ -77,15 +75,14 @@ the Docker and Docker Compose container management tools and meets the minimal h
 
 The minimum hardware requirements for running a Node are
 relatively low. The following would be suitable minimums
-for a starter Node expecting relatively light traffic:
+for a Node expecting relatively light traffic:
 
 - `512MB RAM`
 - `1 CPU Core`
 - `20GB Hard Disk or SSD`
 - `Public IPv4 address`
 
-If you are expecting larger volumes of hashes to be sent to your server its recommended that you scale-up the system resources by adding more RAM and CPU cores. Alternatively,
-you can scale-out horizontally by running more, perhaps smaller, Nodes. The disk storage needs of a Node are relatively small.
+If you are expecting larger volumes of hashes to be sent to your server its recommended that you scale-up the system resources by adding more RAM and CPU cores. Alternatively, you can scale-out horizontally by running more Nodes. The disk storage needs of a Node are relatively small.
 
 It is not currently supported to run multiple Nodes on a single
 physical host.
@@ -114,7 +111,7 @@ This software is designed to be simple to install and run
 on supported systems. Please follow the instructions below
 to get started.
 
-For illustrative purposes we'll provide instructions for running a Node on Digital Ocean, a cloud VPS provider that gives you root access to a host at minimal monthly cost.
+For illustrative purposes, we'll provide instructions for running a Node on Digital Ocean, a cloud VPS provider that gives you root access to a host at minimal monthly cost.
 
 ### Prerequisites
 
@@ -192,16 +189,15 @@ CHAINPOINT_NODE_PUBLIC_URI=
 
 `CHAINPOINT_NODE_PUBLIC_URI` : should be a URI where your Node can be publicly discovered and utilized by others. This might look like `http://10.1.1.20`. Your Node will run on port `80` over `http`. You can also provide a DNS domain name instead of an IPv4 address if you prefer. If provided, this address will be periodically audited by Tierion Core to ensure compliance with the rules for a healthy Node. If you leave this config value blank, it will be assumed that your Node is not publicly available, and you will not be eligible to earn TNT rewards.
 
-Once your Node starts with these configured values, a secret key will be provided for your system and stored in your local database. The Node will use this key to help authenticate itself to Tierion Core for submitting hashes and retrieving proofs in the future. If this secret key is lost, you will likely need to switch to another Ethereum address, and any credits on Tierion Core will be inaccesible. When you first start your Node, and this secret key is displayed in the logs, you will want to store it somewhere in case of accidental deletion.
+Once your Node starts with these configured values, a secret key will be provided for your system and stored in your local database. The Node will use this key to help authenticate itself to Tierion Core, submitting hashes, and retrieving proofs. If this secret key is lost, you will likely need to switch to another Ethereum address, and any credits on Tierion Core will be inaccessible. When you first start your Node this secret key is displayed in the logs. You will want to store it somewhere in case of accidental deletion.
 
-Loss of this secret would not expose you to loss of Ether or TNT. But without it you may lose any credits you have associated with your Ethereum address.
+Loss of this secret does not expose you to loss of Ether or TNT. But without it you may lose any credits you have associated with your Ethereum address.
 
 ### Run Your Node
 
 Now its time to start your own Node!
 
-After finishing the configuration in the `.env` file and saving it make sure you are in the `~/chainpoint-node` directory and run `make`. This will show you some Makefile
-commands that are available to you:
+After finishing the configuration in the `.env` file and saving it make sure you are in the `~/chainpoint-node` directory and run `make`. This will show you some Makefile commands that are available to you:
 
 * `make up` : start all services
 * `make down` : stop all services
@@ -229,9 +225,9 @@ If there are any problems you see in the logs, or if something is not working as
 
 Once your Node is running, and has registered itself,
 you'll need to transfer TNT so that you can have a credit
-balance to use for submitting hashes. If your Node has no credits available to it, it won't be able to submit hashes to Core, and it won't be eligible for TNT rewards.
+balance for submitting hashes. If your Node has no credits, it won't be able to submit hashes to Core, and it won't be eligible for TNT rewards.
 
-The process of converting TNT to credits is quite easy. Using a tool like [MyEtherWallet](https://www.myetherwallet.com/), transfer TNT from the address that your Node is registered with, to the Core receiving address.
+The process of converting TNT to credits is easy. Using a tool like [MyEtherWallet](https://www.myetherwallet.com/), transfer TNT from the address that your Node is registered with, to the Core receiving address.
 
 You can find the current receiving address at the `/config` HTTP endpoint on each Core cluster.
 
@@ -249,7 +245,7 @@ It is also *very* important to only send the TNT for credits *after* you have su
 
 Now you should be fully up and running! You might want to try out your new Node now with the [Chainpoint CLI](https://github.com/chainpoint/chainpoint-cli).
 
-Normally the CLI will auto-discover a Node to send hashes to. Once you have it installed though, you can configure it to always use your Node if you like.
+Normally the CLI will auto-discover a Node to send hashes to. Once you have it installed though, you can configure it to always use your Node if you prefer.
 
 You can either modify the Node address in the `~/.chainpoint/cli.config` to set it permanently, or you can override the Node address every time you use it like this:
 
