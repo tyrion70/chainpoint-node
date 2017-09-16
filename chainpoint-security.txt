@@ -1,0 +1,157 @@
+Tierion Network Security
+
+This file contains important information relevant to
+the security of the Tierion Network and Chainpoint
+software. This is considered the canonical source of
+truth for related information.
+
+Warning : You should never accept information provided
+in public channels as being safe to use for security
+sensitive information such as Ethereum contract
+addresses. Those with malicious intent may for example
+try to intercept TNT by publishing an illicit
+destination addresses. Always consult this file if unsure.
+
+
+Tierion Network Core
+-----------------------------------------------------------
+
+Core Clusters:
+https://a.chainpoint.org/config
+https://b.chainpoint.org/config
+https://c.chainpoint.org/config
+
+TLS Certificate
+
+Issuer:
+CloudFlare Inc ECC CA-2
+
+SHA256 Fingerprint:
+F9 11 43 DC B4 FE 51 9F 10 74 E5 06 16 43 5A C2 1E AE 9E 37 76 46 F7 78 1C 9F 3A 05 6B FA C3 75
+
+
+Calendar Block Signature Public Keys
+-----------------------------------------------------------
+
+The partial hash (fingerprint) of each public key and
+the Base64 encoded Ed25519 public key. Current public
+keys are also available from the Core `/config` endpoints.
+
+  "public_keys": {
+    "09b0ec65fa25": "Q88brO55SfkY5S0Rbnyh3gh1s6izAj9v4BSWVF1dce0=",
+    "fcbc2ba6c808": "UWJSQwBjlvlkSirJcdFKP4zGQIq1mfrk7j0xV0CZ9yI="
+  }
+
+
+TNT -> Credits
+-----------------------------------------------------------
+
+When sending TNT to the Core service, in exchange
+for Node operating credits, always send the TNT
+to the Ethereum address:
+
+0xddfff2b78463ab1ca781e853bb888fdfd06083d3
+
+You must *always* send to this address from the
+same Ethereum account your Node is registered with.
+
+Currently, TNT are converted to credits at the
+rate of 1 TNT = 200 credits. This will likely change
+in the future and be based on a more dynamic rate of
+exchange.
+
+
+TNT Rewards
+-----------------------------------------------------------
+
+Rewards are issued every thirty minutes to a Node that
+passes the eligibility criteria. Three Hundred Million
+Tierion Network Tokens (TNT) will be distributed via
+rewards over nearly eight years.
+
+This schedule is divided up into fourteen epochs. Each
+epoch lasts 200 days and contains 9600 reward periods.
+
+Rewards decline 20% per epoch.
+
+In the first epoch, the reward per period is 6,537.16 TNT.
+
+Ninety-five percent goes to a Node (6,210.30 TNT) and
+five percent goes to the Core member that paid to
+anchor the data (326.86 TNT).
+
+Tierion is ineligible to receive rewards. If Tierion
+is selected to anchor, 100% of the reward goes to the
+Node operator. 
+
+The current Ethereum address that is used to pay rewards is:
+
+0xdDFFF2b78463AB1cA781e853BB888FDfd06083d3
+
+Rewards are also published as a `reward` type block in the
+Calendar, permanently recording that reward and the
+Ethereum address it was sent to. This ensures that
+rewards are also anchored to public blockchains.
+
+
+Node Minimum Balances
+-----------------------------------------------------------
+
+In order for Nodes to be eligible for TNT rewards they
+must maintain certain minimum balances.
+
+2,500 TNT (250000000000 Grains)
+
+Nodes must also maintain enough credits to be able to
+operate for 3 hours at 1 credit per second consumed.
+
+10,800 credits
+
+
+Signature Verification
+-----------------------------------------------------------
+
+This file is OpenPGP signed with the official
+Tierion PGP key:
+
+Tierion Security <security@tierion.com>
+fingerprint: 86B6E539C21BCC44E3364495AB003F4636464A38
+64 bit fingerprint: AB003F4636464A38
+
+You can find the public key at one of these locations:
+
+https://keybase.io/tierion
+
+http://pgp.mit.edu/pks/lookup?op=get&search=0xAB003F4636464A38
+
+The only location that should be used to retrieve this
+file is the official Keybase signed filesystem for the
+'tierion' account:
+
+https://keybase.pub/tierion/
+
+You can import the public key and verify this
+file by downloading this file and its signature
+and executing the following commands:
+
+# Import the public key to gpg
+curl https://keybase.io/tierion/pgp_keys.asc | gpg --import
+
+# Verify the detached signature
+gpg --verify chainpoint-security.txt.sig chainpoint-security.txt
+
+For a GOOD signature you should see something like the
+following output:
+
+gpg: Signature made Sat Jul 22 10:14:21 2017 EST
+gpg:                using RSA key ED9238941FDD8A7F5401EDA9A4D3FEA87211FE71
+gpg: Good signature from "Tierion Security <security@tierion.com>" [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: 86B6 E539 C21B CC44 E336  4495 AB00 3F46 3646 4A38
+     Subkey fingerprint: ED92 3894 1FDD 8A7F 5401  EDA9 A4D3 FEA8 7211 FE71
+
+
+Thank you for using our systems securely!
+
+security@tierion.com
