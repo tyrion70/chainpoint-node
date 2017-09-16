@@ -161,6 +161,8 @@ Simply copy/paste that script into your terminal and it will:
 * grant the ability for your local user to run Docker commands without using `sudo`
 * download this repository to your home folder.
 
+**Important**: You should close your terminal and login again now to make sure that the changes in the script are fully applied.
+
 ### Configure Your Node
 
 Configuration is as simple as editing a single configuration file and providing two variables. We provide a sample configuration file in this repository called `.env.sample`.
