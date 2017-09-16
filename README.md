@@ -223,13 +223,15 @@ If there are any problems you see in the logs, or if something is not working as
 
 ### Transferring TNT for Credits
 
+**Important**: When sending TNT to our Ethererum address in order to purchase credits, please reference our [https://keybase.pub/tierion/chainpoint-security.txt](https://keybase.pub/tierion/chainpoint-security.txt) file. This cryptographically signed document, should be considered the authoritative source of security related information for the Tierion Network. This document, and its signature file, are also found in the root of this repository.
+
 Once your Node is running, and has registered itself,
 you'll need to transfer TNT so that you can have a credit
 balance for submitting hashes. If your Node has no credits, it won't be able to submit hashes to Core, and it won't be eligible for TNT rewards.
 
 The process of converting TNT to credits is easy. Using a tool like [MyEtherWallet](https://www.myetherwallet.com/), transfer TNT from the address that your Node is registered with, to the Core receiving address.
 
-You can find the current receiving address at the `/config` HTTP endpoint on each Core cluster.
+You can find the current receiving address in the chainpoint-security.txt document referenced above, or in the `/config` HTTP endpoint on each Core cluster.
 
 * https://a.chainpoint.org/config
 * https://b.chainpoint.org/config
