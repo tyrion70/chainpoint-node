@@ -42,12 +42,21 @@ up:
 down:
 	docker-compose down
 
-## Tail Node logs
+## Tail Node logs for the Chainpoint Docker Container
 logs:
+	docker-compose logs -f -t | grep chainpoint-node
+
+logs-redis:
+	docker-compose logs -f -t | grep redis
+
+logs-postgres:
+	docker-compose logs -f -t | grep postgres
+
+logs-all:
 	docker-compose logs -f -t
 
 ## View running processes
 ps:
 	docker-compose ps
 
-.PHONY: all build-config up down logs ps
+.PHONY: all build-config up down logs logs-redis logs-postgres logs-all ps
