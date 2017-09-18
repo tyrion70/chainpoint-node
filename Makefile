@@ -34,10 +34,6 @@ build-config:
 	cp .env.sample .env && \
 	echo 'Copied config .env.sample to .env' || true
 
-## Pull Docker images
-pull:
-	docker-compose pull
-
 ## Start Node
 up:
 	docker-compose up -d --no-build
@@ -54,4 +50,4 @@ logs:
 ps:
 	docker-compose ps
 
-.PHONY: all build-config pull up down logs ps
+.PHONY: all build-config up down logs ps
