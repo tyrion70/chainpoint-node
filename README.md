@@ -124,9 +124,6 @@ use to identify your Node. You can check your TNT balance
 (in Grains, divide by `100000000` (10^8) for TNT balance) using the Etherscan.io
 [contract reading tool for our ERC20 smart contract](https://etherscan.io/address/0x08f5a9235b08173b7569f83645d2c7fb55e8ccd8#readContract) (input your address in the `balanceOf` field and click `Query`).
 
-* Sending hashes from a Node to Core requires that you convert TNT to system credits and spend credits for each
-hash submitted. You will need additional TNT to send to our system, over and above the minimum balance, to fund your credit balance. Nodes that don't meet both the required minimum balance, and that don't have enough credits to operate for a period of time under normal use, are not eligible for Node discovery or TNT rewards.
-
 ### Start a Server
 
 Your first step is to start a server and gain SSH access
@@ -225,25 +222,9 @@ If there are any problems you see in the logs, or if something is not working as
 
 ### Transferring TNT for Credits
 
-**Important**: When sending TNT to our Ethererum address in order to purchase credits, please reference our [https://keybase.pub/tierion/chainpoint-security.txt](https://keybase.pub/tierion/chainpoint-security.txt) file. This cryptographically signed document, should be considered the authoritative source of security related information for the Tierion Network. This document, and its signature file, are also found in the root of this repository.
+Update 9/19/2017
 
-Once your Node is running, and has registered itself,
-you'll need to transfer TNT so that you can have a credit
-balance for submitting hashes. If your Node has no credits, it won't be able to submit hashes to Core, and it won't be eligible for TNT rewards.
-
-The process of converting TNT to credits is easy. Using a tool like [MyEtherWallet](https://www.myetherwallet.com/), transfer TNT from the address that your Node is registered with, to the Core receiving address.
-
-You can find the current receiving address in the chainpoint-security.txt document referenced above, or in the `/config` HTTP endpoint on each Core cluster.
-
-* https://a.chainpoint.org/config
-* https://b.chainpoint.org/config
-* https://c.chainpoint.org/config
-
-Just look for the `core_eth_address` key in the JSON that is returned. Always confirm the address here, and confirm the `chainpoint.org` TLS certificate is being used.
-
-Once you've confirmed this address you'll need to send some TNT. Its *very* important that you send the TNT from the *same* address that your Node is registered with. This is the only way we can assign the credits to the correct address.
-
-It is also *very* important to only send the TNT for credits *after* you have successfully setup, run and registered your Node. Otherwise we won't know the address to assign the credits to.
+Nodes will receive enough credits to submit the maximum number of hashes to Core per day. Nodes under max load will submit one hash per second to Core, and there are 86,400 seconds per day.  At UTC midnight, Nodes with a balance below 86,400 will have their credit balance restored to 86,400. This credit model will remain active until further notice. At this time, there is no need to convert TNT to credits.
 
 ### Sending Hashes to Your Node with the CLI
 
