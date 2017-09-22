@@ -54,3 +54,12 @@ build-config:
 	@[ ! -f ./.env ] && \
 	cp .env.sample .env && \
 	echo 'Copied config .env.sample to .env' || true
+
+## git-pull        : Git pull latest
+.PHONY : git-pull
+git-pull:
+	git pull
+
+## upgrade         : Upgrade
+.PHONY : upgrade
+upgrade: down git-pull up
