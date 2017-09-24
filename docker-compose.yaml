@@ -1,4 +1,4 @@
-version: '2'
+version: '2.1'
 
 networks:
   chainpoint-node:
@@ -30,8 +30,8 @@ services:
       - /usr/local/etc/redis/redis.conf
 
   chainpoint-node:
-    restart: always
-    image: quay.io/chainpoint/chainpoint-node:74fe7fb1f68d7665e377e0ab9a9379825ec008b3
+    image: quay.io/chainpoint/chainpoint-node:8ab81b3189ae8adcbee4cbff9ba4ad073b1efc13
+    restart: on-failure
     volumes:
       - ~/.chainpoint:/home/node/app/.chainpoint
     ports:
@@ -43,4 +43,4 @@ services:
       - postgres
     environment:
       NODE_TNT_ADDRESS: ${NODE_TNT_ADDRESS}
-      CHAINPOINT_NODE_PUBLIC_URI: ${CHAINPOINT_NODE_PUBLIC_URI}
+      CHAINPOINT_NODE_PUBLIC_URI: "${CHAINPOINT_NODE_PUBLIC_URI:-http://0.0.0.0}"
