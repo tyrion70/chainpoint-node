@@ -77,10 +77,12 @@ The minimum hardware requirements for running a Node are
 relatively low. The following would be suitable minimums
 for a Node expecting relatively light traffic:
 
-- `512MB RAM`
+- `>= 1GB RAM`
 - `1 CPU Core`
 - `20GB Hard Disk or SSD`
 - `Public IPv4 address`
+
+Running a Node on a server with less than 1GB of RAM has been [known to cause issues](https://github.com/chainpoint/chainpoint-node-src).
 
 If you are expecting larger volumes of hashes to be sent to your server its recommended that you scale-up the system resources by adding more RAM and CPU cores. Alternatively, you can scale-out horizontally by running more Nodes. The disk storage needs of a Node are relatively small.
 
