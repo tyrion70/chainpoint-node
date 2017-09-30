@@ -7,33 +7,38 @@ networks:
 services:
 
   postgres:
-    restart: always
     image: postgres:9.6.5-alpine
+    container_name: postgres-node
+    restart: always
+    ports:
+      - "5433:5432"
+    networks:
+      - chainpoint-node
     volumes:
       - ./.data/postgresql:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: chainpoint
       POSTGRES_PASSWORD: chainpoint
-    networks:
-      - chainpoint-node
 
   redis:
-    restart: always
     image: redis:4.0.1-alpine
+    container_name: redis-node
+    restart: always
+    ports:
+      - "6380:6379"
+    networks:
+      - chainpoint-node
     volumes:
       - ./.redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
       - ./.data/redis:/data
-    networks:
-      - chainpoint-node
     command:
       - redis-server
       - /usr/local/etc/redis/redis.conf
 
   chainpoint-node:
     image: quay.io/chainpoint/chainpoint-node:55844cc37c1ff608caaab3718fdd463a861adc41
+    container_name: chainpoint-node
     restart: on-failure
-    volumes:
-      - ~/.chainpoint:/home/node/app/.chainpoint
     ports:
       - "80:8080"
     networks:

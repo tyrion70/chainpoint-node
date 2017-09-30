@@ -190,9 +190,52 @@ CHAINPOINT_NODE_PUBLIC_URI=
 
 `CHAINPOINT_NODE_PUBLIC_URI` : should be a URI where your Node can be publicly discovered and utilized by others. This might look like `http://10.1.1.20`. Your Node will run on port `80` over `http`. You can also provide a DNS domain name instead of an IPv4 address if you prefer. If provided, this address will be periodically audited by Tierion Core to ensure compliance with the rules for a healthy Node. If you leave this config value blank, it will be assumed that your Node is not publicly available, and you will not be eligible to earn TNT rewards.
 
-Once your Node starts with these configured values, a secret key will be provided for your system and stored in your local database. The Node will use this key to help authenticate itself to Tierion Core, submitting hashes, and retrieving proofs. If this secret key is lost, you will likely need to switch to another Ethereum address, and any credits on Tierion Core will be inaccessible. When you first start your Node this secret key is displayed in the logs. You will want to store it somewhere in case of accidental deletion.
+### Node Authentication Keys
 
-Loss of this secret does not expose you to loss of Ether or TNT. But without it you may lose any credits you have associated with your Ethereum address.
+Once your Node starts and registers itself a secret key will be provided for your system and stored in your local database. The Node will use this key to authenticate itself to Tierion Core when
+submitting hashes and performing other actions. The database can hold multiple authentication keys
+and will choose the right one based on the Ethereum address you've configured.
+
+If this secret key is lost, you will likely need to switch to another Ethereum address, and any credits on Tierion Core will be inaccessible. When you first start your Node this secret key is displayed in the logs. You will want to store it somewhere in case of accidental deletion.
+
+Its easy to export your keys at any time by issuing the command `make auth-keys`. This will
+select the keys from the database and print them out to the console. Just copy and paste them
+somewhere safe.
+
+You can also import an Ethereum address and secret key pair into your Node when restoring
+from backup using the following procedure.
+
+Run `make postgres` to start a database console, displaying a `chainpoint=#` prompt.
+
+```
+~ make postgres
+...
+./bin/psql
+psql (9.6.5)
+Type "help" for help.
+
+chainpoint=#
+```
+
+Now issue an `INSERT` query in the console, replacing `ETH_ADDRESS_HERE` with the Ethereum address (`0x0000000000000000000000000000000000000000`) this key was generated for, and `AUTH_KEY_HERE` with an authentication HMAC key that you had previously backed up.
+
+```
+INSERT INTO hmackey (tnt_addr, hmac_key) VALUES (LOWER('ETH_ADDRESS_HERE'), LOWER('AUTH_KEY_HERE'));
+```
+
+**Important**:
+
+* Don't forget the semi-colon (`;`) at the end of the line.
+* The `ETH_ADDRESS_HERE` must be an all lower-case string surrounded by single quotes (`'`). It will be lower cased for you.
+* The `AUTH_KEY_HERE` must be an all lower-case string surrounded by single quotes (`'`).  It will be lower cased for you.
+
+Once completed, you can exit the console with `control-d`.
+
+You can verify that your keys were imported successfully by running `make auth-keys` again.
+
+You should now modify your `.env` file to ensure that the `NODE_TNT_ADDRESS=` value is set to the Ethereum address you just imported. When ready, issue a `make restart` or `make down` and `make up`.
+
+On successful restart you should see log messages indicating use of your new auth key.
 
 ### Run Your Node
 
