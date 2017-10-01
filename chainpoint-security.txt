@@ -55,11 +55,6 @@ to the Ethereum address:
 You must *always* send to this address from the
 same Ethereum account your Node is registered with.
 
-Currently, TNT are converted to credits at the
-rate of 1 TNT = 200 credits. This will likely change
-in the future and be based on a more dynamic rate of
-exchange.
-
 
 TNT Rewards
 -----------------------------------------------------------
@@ -68,17 +63,6 @@ Rewards are issued every thirty minutes to a Node that
 passes the eligibility criteria. Three Hundred Million
 Tierion Network Tokens (TNT) will be distributed via
 rewards over nearly eight years.
-
-This schedule is divided up into fourteen epochs. Each
-epoch lasts 200 days and contains 9600 reward periods.
-
-Rewards decline 20% per epoch.
-
-In the first epoch, the reward per period is 6,537.16 TNT.
-
-Ninety-five percent goes to a Node (6,210.30 TNT) and
-five percent goes to the Core member that paid to
-anchor the data (326.86 TNT).
 
 Tierion is ineligible to receive rewards. If Tierion
 is selected to anchor, 100% of the reward goes to the
@@ -92,20 +76,6 @@ Rewards are also published as a `reward` type block in the
 Calendar, permanently recording that reward and the
 Ethereum address it was sent to. This ensures that
 rewards are also anchored to public blockchains.
-
-
-Node Minimum Balances
------------------------------------------------------------
-
-In order for Nodes to be eligible for TNT rewards they
-must maintain certain minimum balances.
-
-2,500 TNT (250000000000 Grains)
-
-Nodes must also maintain enough credits to be able to
-operate for 3 hours at 1 credit per second consumed.
-
-10,800 credits
 
 
 Signature Verification
