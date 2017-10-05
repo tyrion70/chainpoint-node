@@ -74,36 +74,30 @@ upgrade: down git-pull up
 ## postgres        : Connect to the local PostgreSQL with `psql`
 .PHONY : postgres
 postgres:
-	@docker-compose up -d postgres
-	@sleep 4
-	@./bin/psql
+	@docker exec -ti postgres-node psql -U chainpoint
 
 ## redis           : Connect to the local Redis with `redis-cli`
 .PHONY : redis
 redis:
-	@docker-compose up -d redis
-	@sleep 2
-	@./bin/redis-cli
+	@docker exec -ti redis-node redis-cli
 
 ## auth-keys       : Export HMAC auth keys from PostgreSQL
 .PHONY : auth-keys
-auth-keys: up
-	@sleep 4
-	@echo ''
-	@./bin/psql -c 'SELECT * FROM hmackey;'
+auth-keys: 
+	@docker exec -ti postgres-node psql -U chainpoint -c 'SELECT * FROM hmackey;'
 
 ## auth-key-update : Update HMAC auth key with `KEY` (hex string) var. Example `make update-auth-key KEY=mysecrethexkey`
 .PHONY : auth-key-update
 auth-key-update: guard-KEY up
-	@sleep 8
-	@source .env && ./bin/psql -c "INSERT INTO hmackey (tnt_addr, hmac_key) VALUES (LOWER('$$NODE_TNT_ADDRESS'), LOWER('$(KEY)')) ON CONFLICT (tnt_addr) DO UPDATE SET hmac_key = LOWER('$(KEY)')"
+	@sleep 4
+	@source .env && docker exec -ti postgres-node psql -U chainpoint -c "INSERT INTO hmackey (tnt_addr, hmac_key) VALUES (LOWER('$$NODE_TNT_ADDRESS'), LOWER('$(KEY)')) ON CONFLICT (tnt_addr) DO UPDATE SET hmac_key = LOWER('$(KEY)')"
 	make restart
 
 ## auth-key-delete : Delete HMAC auth key with `NODE_TNT_ADDRESS` var. Example `make auth-key-delete NODE_TNT_ADDRESS=0xmyethaddress`
 .PHONY : auth-key-delete
 auth-key-delete: guard-NODE_TNT_ADDRESS up
 	@sleep 4
-	./bin/psql -c "DELETE FROM hmackey WHERE tnt_addr = LOWER('$(NODE_TNT_ADDRESS)')"
+	docker exec -ti postgres-node psql -U chainpoint -c "DELETE FROM hmackey WHERE tnt_addr = LOWER('$(NODE_TNT_ADDRESS)')"
 	make restart
 
 guard-%:
